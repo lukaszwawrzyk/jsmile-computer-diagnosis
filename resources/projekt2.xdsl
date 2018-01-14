@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- This network was created in GeNIe Academic, which can be used for educational and research purposes only -->
+<smile version="1.0" id="Network1" numsamples="10000" discsamples="10000">
+	<nodes>
+		<cpt id="aktualizacje">
+			<state id="Nie" />
+			<state id="Tak" />
+			<probabilities>0.35 0.65</probabilities>
+		</cpt>
+		<cpt id="Wirusy">
+			<state id="Wykryto" />
+			<state id="Nie_wykryto" />
+			<probabilities>0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="pelny_dysk">
+			<state id="tak" />
+			<state id="nie" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<noisymax id="brakMiejscaNaDysku">
+			<state id="Tak" />
+			<state id="Nie" />
+			<parents>Wirusy pelny_dysk</parents>
+			<strengths>0 1 0 1</strengths>
+			<parameters>0.01000000000000001 0.99 0 1 1 0 0 1 0.09987792968749998 0.9001220703125</parameters>
+		</noisymax>
+		<cpt id="WersjaSterownika">
+			<state id="Nie" />
+			<state id="Tak" />
+			<probabilities>0.75 0.25</probabilities>
+		</cpt>
+		<cpt id="Reklamy">
+			<state id="Tak" />
+			<state id="Nie" />
+			<parents>Wirusy</parents>
+			<probabilities>0.2 0.8 0.01 0.9900000000000001</probabilities>
+		</cpt>
+		<cpt id="Internet">
+			<state id="Tak" />
+			<state id="Nie" />
+			<probabilities>0.25 0.75</probabilities>
+		</cpt>
+		<noisymax id="StronyWolnoDzialaja">
+			<state id="Tak" />
+			<state id="Nie" />
+			<parents>Wirusy Internet aktualizacje WersjaSterownika brakMiejscaNaDysku</parents>
+			<strengths>0 1 0 1 0 1 0 1 0 1</strengths>
+			<parameters>0.2 0.8 0 1 0.95 0.05000000000000004 0 1 0.05000000000000004 0.95 0 1 0.07999999999999996 0.92 0 1 0.005000000000000004 0.995 0 1 0.04987792968750004 0.9501220703125</parameters>
+		</noisymax>
+		<noisymax id="DlugieLadowanieFilmu">
+			<state id="Tak" />
+			<state id="Nie" />
+			<parents>Wirusy Internet aktualizacje WersjaSterownika</parents>
+			<strengths>0 1 0 1 0 1 0 1</strengths>
+			<parameters>0.05000000000000004 0.95 0 1 0.98 0.02000000000000002 0 1 0.01000000000000001 0.99 0 1 0.008000000000000007 0.992 0 1 0.1498779296875 0.8501220703125</parameters>
+		</noisymax>
+		<noisymax id="PlikiSieWolnoSciagaja">
+			<state id="Tak" />
+			<state id="Nie" />
+			<parents>Wirusy Internet aktualizacje WersjaSterownika</parents>
+			<strengths>0 1 0 1 0 1 0 1</strengths>
+			<parameters>0.07000000000000006 0.9299999999999999 0 1 0.99 0.01000000000000001 0 1 0.02000000000000002 0.98 0 1 0.02000000000000002 0.98 0 1 0.1498779296875 0.8501220703125</parameters>
+		</noisymax>
+		<cpt id="IloscProgramowPrzyStarcie">
+			<state id="Tak" />
+			<state id="Nie" />
+			<probabilities>0.4 0.6</probabilities>
+		</cpt>
+		<noisymax id="CzasUruchamianiaSystemu">
+			<state id="Wystepuje" />
+			<state id="NieWystepuje" />
+			<parents>IloscProgramowPrzyStarcie Wirusy brakMiejscaNaDysku WersjaSterownika</parents>
+			<strengths>0 1 0 1 0 1 0 1</strengths>
+			<parameters>0.8 0.2 0 1 0.09999999999999998 0.9 0 1 0.4 0.6 0 1 0.05000000000000004 0.95 0 1 0.3496337890625 0.6503662109375</parameters>
+		</noisymax>
+		<cpt id="UszkodzenieSprzetu">
+			<state id="Wystepuje" />
+			<state id="Brak" />
+			<probabilities>0.35 0.65</probabilities>
+		</cpt>
+		<noisymax id="RestartSystemu">
+			<state id="Wystepuje" />
+			<state id="NieWystepuje" />
+			<parents>Wirusy UszkodzenieSprzetu</parents>
+			<strengths>0 1 0 1</strengths>
+			<parameters>0.05000000000000004 0.95 0 1 0.09999999999999998 0.9 0 1 0.04975585937500004 0.950244140625</parameters>
+		</noisymax>
+		<noisymax id="DrukarkaNieDziala">
+			<state id="Tak" />
+			<state id="Nie" />
+			<parents>UszkodzenieSprzetu aktualizacje WersjaSterownika</parents>
+			<strengths>0 1 0 1 0 1</strengths>
+			<parameters>0.9 0.09999999999999998 0 1 0.01000000000000001 0.99 0 1 0.05000000000000004 0.95 0 1 0.09975585937499998 0.900244140625</parameters>
+		</noisymax>
+		<noisymax id="PrzegrzewaSie">
+			<state id="Tak" />
+			<state id="Nie" />
+			<parents>UszkodzenieSprzetu Wirusy</parents>
+			<strengths>0 1 0 1</strengths>
+			<parameters>0.2999999999999999 0.7000000000000001 0 1 0.09999999999999998 0.9 0 1 0.09987792968749998 0.9001220703125</parameters>
+		</noisymax>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.2.2414.0 ACADEMIC" name="Network1" faultnameformat="nodestate">
+			<node id="brakMiejscaNaDysku">
+				<name>Brak miejsca na dysku</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1242 511 1385 590</position>
+			</node>
+			<node id="aktualizacje">
+				<name>Nieaktualna wersja systemu</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>730 54 863 125</position>
+			</node>
+			<node id="WersjaSterownika">
+				<name>Nieaktualne Sterowniki</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1209 37 1339 115</position>
+			</node>
+			<node id="Wirusy">
+				<name>Wirusy</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>993 501 1131 580</position>
+			</node>
+			<node id="Reklamy">
+				<name>Niechciane oprogramowanie</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>712 298 829 369</position>
+			</node>
+			<node id="StronyWolnoDzialaja">
+				<name>Wolne dzialanie stron</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1217 274 1331 345</position>
+			</node>
+			<node id="DlugieLadowanieFilmu">
+				<name>Dlugi czas ladowania filmów</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1046 277 1149 351</position>
+			</node>
+			<node id="PlikiSieWolnoSciagaja">
+				<name>Pliki sie wolno sciagaja</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>872 211 990 293</position>
+			</node>
+			<node id="Internet">
+				<name>Wolny Internet</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>939 39 1068 117</position>
+			</node>
+			<node id="CzasUruchamianiaSystemu">
+				<name>Dlugi czas startu systemu</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1404 370 1546 446</position>
+			</node>
+			<node id="IloscProgramowPrzyStarcie">
+				<name>Duza ilosc programow uruchamiana przy starcie</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1406 624 1535 713</position>
+			</node>
+			<node id="RestartSystemu">
+				<name>Samoistny restart systemu</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>861 327 967 390</position>
+			</node>
+			<node id="DrukarkaNieDziala">
+				<name>Drukarka nie drukuje</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>457 232 590 301</position>
+			</node>
+			<node id="PrzegrzewaSie">
+				<name>Komputer sie przegrzewa</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>613 365 734 443</position>
+			</node>
+			<node id="UszkodzenieSprzetu">
+				<name>Uszkodzenie sprzetu</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>541 506 655 581</position>
+			</node>
+			<node id="pelny_dysk">
+				<name>Za duzo plików</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1212 624 1352 724</position>
+			</node>
+		</genie>
+	</extensions>
+</smile>
